@@ -40,6 +40,12 @@ function pathToPdf(call) {
 }
 
 function main() {
+    const dir = `${__dirname}/../tmp/`;
+
+    if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir);
+    }
+    
     var server = new grpc.Server();
     server.addService(ConvertDoc.ConvertDocxToPdfService.service, { ConvertDocxToPdf: pathToPdf });
     server.bindAsync('0.0.0.0:50051', grpc.ServerCredentials.createInsecure(), () => {
