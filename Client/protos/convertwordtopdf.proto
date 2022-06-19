@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option objc_class_prefix = "HLW";
+
+package ConvertDoc;
+
+service ConvertDocxToPdfService {
+  rpc ConvertDocxToPdf(stream DocDTO) returns (stream DocDTO) {}
+}
+
+message DocDTO { bytes chunk = 1; }
