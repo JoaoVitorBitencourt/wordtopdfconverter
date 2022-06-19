@@ -31,8 +31,13 @@ function sendDocxConvert(nameFile) {
 
 function main() {
   fs.readdir(`${__dirname}/../tmp/`, async (err, files) => {
+    if(!files){
+      console.log("Pasta Tmp inexistente");
+      return;
+    } 
     if(files.length === 0 ){
       console.log(`Arquivos .docx inexistentes em: ${__dirname.replace("client", "tmp")}`);
+      return;
     }
 
     const docsToConvert = await files.filter(el => /docx$/.test(el));
